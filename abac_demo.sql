@@ -14,9 +14,14 @@
 
 -- COMMAND ----------
 
+-- MAGIC %md
+-- MAGIC **1.1 Ensure you have a catalog created and set the catalog_param widget to the correct value**
+
+-- COMMAND ----------
+
 -- MAGIC %python
 -- MAGIC dbutils.widgets.text("catalog_param", "abac")
--- MAGIC dbutils.widgets.text("schema_param", "pii_schema_test")
+-- MAGIC dbutils.widgets.text("schema_param", "pii")
 
 -- COMMAND ----------
 
@@ -205,4 +210,4 @@ SHOW POLICIES ON CATALOG ${catalog_param};
 
 -- COMMAND ----------
 
--- drop catalog ${catalog_param} cascade;
+-- drop schema ${catalog_param}.${schema_param} cascade;
