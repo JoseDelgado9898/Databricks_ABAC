@@ -1,0 +1,26 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  my_script_using_wif:
+    runs-on: ubuntu-latest
+    environment: prod
+    env:
+      DATABRICKS_AUTH_TYPE: github-oidc
+      DATABRICKS_HOST: https://adb-7405617783113370.10.azuredatabricks.net/
+      DATABRICKS_CLIENT_ID: afbb3ac3-e05b-4238-a0e7-ddd75713e694
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Databricks CLI
+        uses: databricks/setup-cli@main
+
+      - name: Run Databricks CLI commands
+        run: databricks current-user me
